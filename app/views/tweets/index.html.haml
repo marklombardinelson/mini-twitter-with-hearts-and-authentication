@@ -1,0 +1,27 @@
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Post
+        %th Username
+        %th{colspan: 5}
+
+    %tbody
+      - @tweets.each do |tweet|
+        %tr
+          %td= tweet.post
+          %td= tweet.username
+          %td
+            = link_to tweet do
+              %span.glyphicon.glyphicon-ok
+          %td
+            = link_to edit_tweet_path(tweet) do
+              %span.glyphicon.glyphicon-pencil
+          %td
+            = link_to tweet, data: { confirm: 'Are you sure?' }, method: :delete do
+              %span.glyphicon.glyphicon-remove
+          %td
+            = link_to heart_tweet_path(tweet) do
+              %span.glyphicon.glyphicon-heart
+          %td
+            = tweet.hearts.count
